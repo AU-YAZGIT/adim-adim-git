@@ -1,0 +1,76 @@
+/* ==========================================================================
+   shared/base.css: tüm sayfalarda ortak temel stiller ve bileşenler.
+   Her sayfa önce tokens.css, sonra base.css, en son kendi CSS'ini yükler.
+
+   1. Temel
+   2. Satır içi kod
+   3. Butonlar
+   4. Site alt bilgisi
+   ========================================================================== */
+
+/* 1. Temel ---------------------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { scroll-padding-top: var(--space-3); }
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font: 400 1rem/1.5 var(--font-body);
+}
+
+a { color: var(--color-link); }
+:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
+
+.skip-link {
+  position: absolute;
+  left: var(--space-2);
+  top: -4rem;
+  z-index: 20;
+  padding: var(--space-1) var(--space-2);
+  background: var(--color-ink);
+  color: #fff;
+  border-radius: var(--radius-md);
+}
+.skip-link:focus { top: var(--space-1); }
+
+.fallback { color: var(--color-muted); max-width: var(--measure); }
+
+/* 2. Satır içi kod -------------------------------------------------------- */
+code {
+  padding: 0.2em 0.4em;
+  background: var(--color-inline-code);
+  border-radius: var(--radius-md);
+  font: 0.85em var(--font-mono);
+}
+
+/* 3. Butonlar (GitHub düğme stili) ----------------------------------------- */
+.button {
+  display: inline-block;
+  padding: 0.4rem 1rem;
+  background: var(--branch);
+  color: var(--on-branch);
+  border: 1px solid rgb(31 35 40 / 0.15);
+  border-radius: var(--radius-md);
+  font: 500 0.875rem/1.5 var(--font-body);
+  text-decoration: none;
+  cursor: pointer;
+}
+.button:hover { filter: brightness(0.95); }
+.button--secondary { background: var(--color-subtle); color: var(--color-ink); border-color: var(--color-line); }
+.button--secondary:hover { background: #EFF2F5; filter: none; }
+
+/* 4. Site alt bilgisi ----------------------------------------------------- */
+.site-footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-3);
+  font-size: 0.8125rem;
+}
+.site-footer a { color: var(--color-muted); text-decoration: none; }
+.site-footer a:hover { color: var(--color-link); text-decoration: underline; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}

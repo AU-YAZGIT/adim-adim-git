@@ -1,0 +1,74 @@
+/* ==========================================================================
+   shared/tokens.css: tüm sayfaların paylaştığı tasarım değerleri.
+   Renk, yazı tipi, boşluk ve branch renkleri yalnızca burada tanımlanır.
+   Sayfa CSS'leri bu değerleri kullanır, yeniden tanımlamaz.
+
+   Görünüm GitHub'ın (Primer) açık temasını izler: sistem yazı tipleri,
+   nötr gri tonlar, 6px köşeler. Marka renkleri siyah ve sarıdır.
+   Harici yazı tipi yüklemek gerekmez.
+   ========================================================================== */
+
+:root {
+  /* Marka: sarı tonları (hero arka planı bu tonlardan yalnızca bunları kullanır) */
+  --yellow-300: #FFE066;
+  --yellow-400: #FFD33D;
+  --yellow-500: #F5C400;
+  --yellow-600: #D9A800;
+  --yellow-700: #B08800;
+  --color-accent: var(--yellow-500);
+  --color-on-accent: #1F2328;   /* sarının üstündeki yazı */
+
+  /* Nötrler (GitHub açık tema) */
+  --color-bg: #FFFFFF;
+  --color-surface: #FFFFFF;
+  --color-subtle: #F6F8FA;
+  --color-ink: #1F2328;
+  --color-muted: #59636E;
+  --color-line: #D1D9E0;
+  --color-link: #0969DA;
+  --color-focus: #0969DA;
+  --color-code-bg: #F6F8FA;
+  --color-code-text: #1F2328;
+  --color-inline-code: #EFF1F3;
+
+  /* Durum renkleri */
+  --color-success: #1A7F37;
+  --color-error: #D1242F;
+  --color-warning: #9A6700;
+  --tint-success: #DAFBE1;
+  --tint-error: #FFEBE9;
+  --tint-warning: #FFF8C5;
+
+  /* Yazı tipleri: GitHub'ın sistem yazı tipi yığını */
+  --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+
+  /* Köşe yuvarlaklığı */
+  --radius-sm: 3px;
+  --radius-md: 6px;
+  --radius-lg: 12px;
+
+  /* Boşluk ölçeği */
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2rem;
+  --space-5: 3.5rem;
+
+  /* Okuma genişliği */
+  --measure: 68ch;
+
+  /* Varsayılan vurgu: sarı. Tutorial bölümleri aşağıdaki .branch-N sınıflarıyla değiştirir */
+  --branch: var(--color-accent);
+  --on-branch: var(--color-on-accent);
+}
+
+/* Her bölüm bir branch rengi alır. Tutorial'da sınıfları motor atar. */
+.branch-0 { --branch: #5B4BFF; --on-branch: #FFFFFF; }
+.branch-1 { --branch: #0E8C74; --on-branch: #FFFFFF; }
+.branch-2 { --branch: #D63A72; --on-branch: #FFFFFF; }
+.branch-3 { --branch: var(--yellow-500); --on-branch: var(--color-on-accent); }
+.branch-0, .branch-1, .branch-2, .branch-3 {
+  /* Metin olarak kullanılan renk, açık tonlarda da okunur kalsın diye koyulaştırılır */
+  --branch-text: color-mix(in srgb, var(--branch) 70%, var(--color-ink));
+}
