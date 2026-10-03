@@ -1,0 +1,51 @@
+/* Hero sayfasına özel stiller. Renk ve boşluk tokenları shared/tokens.css'ten,
+   .button ve .site-footer shared/base.css'ten gelir. */
+
+#steps-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.hero {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100svh;
+}
+
+.hero__main {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-5) var(--space-3);
+  text-align: center;
+}
+
+.hero__logos { display: flex; align-items: center; gap: var(--space-3); margin-bottom: var(--space-4); }
+.hero__logo { display: block; width: auto; height: 56px; max-width: 40vw; object-fit: contain; }
+.hero__divider { width: 1px; height: 40px; background: var(--color-line); }
+
+.hero__title {
+  margin: 0;
+  color: var(--color-ink);
+  font-size: clamp(3rem, 11vw, 7rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+.hero__git { color: var(--color-accent); }
+.hero__tagline { margin: var(--space-2) 0 var(--space-4); color: var(--color-muted); font-size: 1.25rem; }
+
+.button--large { padding: 0.75rem 1.75rem; font-size: 1.0625rem; }
+
+.hero__footer { padding: var(--space-3); border-top: 1px solid var(--color-line); background: var(--color-bg); color: var(--color-muted); font-size: 0.8125rem; text-align: center; }
+.hero__license { max-width: 56ch; margin: 0 auto var(--space-1); }
+.hero__footer .site-footer { justify-content: center; }

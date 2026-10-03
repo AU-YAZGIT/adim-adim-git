@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#FFFFFF">
+  <meta name="description" content="Git ve GitHub'ı sıfırdan öğreten, etkileşimli rehber.">
+  <title>Adım Adım Git | AÜ-YAZGIT</title>
+
+  <link rel="stylesheet" href="../../shared/tokens.css">
+  <link rel="stylesheet" href="../../shared/base.css">
+  <link rel="stylesheet" href="hero.css">
+  <script type="module" src="hero.js"></script>
+</head>
+<body>
+  <!-- Arka plan animasyonu: süs olduğu için ekran okuyuculardan gizlenir -->
+  <canvas id="steps-bg" aria-hidden="true"></canvas>
+
+  <div class="hero">
+    <main class="hero__main">
+      <div class="hero__logos">
+        <!-- Logo dosyalarını shared/assets/logos/ içine koy ve src'yi dosya adınla eşleştir
+             (.png, .jpg, .jpeg, .svg hepsi çalışır). -->
+        <img class="hero__logo" src="../../shared/assets/logos/school-logo.png" alt="Ankara Üniversitesi">
+        <span class="hero__divider" aria-hidden="true"></span>
+        <img class="hero__logo" src="../../shared/assets/logos/community-logo.jpeg" alt="AÜ-YAZGIT">
+      </div>
+
+      <h1 class="hero__title">Adım Adım <span class="hero__git">Git</span></h1>
+      <p class="hero__tagline">Git ve GitHub'ı sıfırdan öğren.</p>
+
+      <a id="start" class="button button--large" href="../tutorial/">Başla</a>
+    </main>
+
+    <footer class="hero__footer">
+      <p class="hero__license">
+        Açık kaynak, MIT lisansıyla: kullanabilir, değiştirebilir ve paylaşabilirsin.
+        Yapım: Ankara Üniversitesi Yapay Zeka ve Görüntü İşleme Topluluğu.
+      </p>
+      <nav class="site-footer" aria-label="Bağlantılar">
+        <a href="https://github.com/AU-YAZGIT/adim-adim-git">GitHub</a>
+        <a href="https://github.com/AU-YAZGIT/adim-adim-git/blob/main/LICENSE">Lisans</a>
+        <a href="https://www.yazgit.com/">Web sitesi</a>
+        <a href="https://www.instagram.com/au_yazgit/">Instagram</a>
+        <a href="https://tr.linkedin.com/company/au-yazgit">LinkedIn</a>
+      </nav>
+    </footer>
+  </div>
+</body>
+</html>
