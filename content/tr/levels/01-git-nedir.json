@@ -1,0 +1,15 @@
+{
+  "id": "01",
+  "blocks": [
+    { "type": "text", "body": "Bir ödevi yazarken `odev_son.docx`, `odev_son_son.docx`, `odev_gercekten_son.docx` gibi dosyalar biriktirdin mi? **Git** tam bu karmaşayı bitirmek için var." },
+    { "type": "text", "body": "Git, projendeki dosyaların her önemli halini kaydeden bir **sürüm kontrol sistemi**dir. Oyunlardaki kayıt noktası gibi düşün: bir şey bozulursa istediğin kayıt noktasına geri dönersin.\n\nGit'te her kayıt noktasına **commit** denir. Her commit'in bir mesajı ve kimin yaptığı bilgisi vardır." },
+    { "type": "code", "lang": "text", "body": "a1b2c3d  Giriş sayfası eklendi\n9f8e7d6  README güncellendi\n4c5d6e7  İlk commit" },
+    { "type": "note", "kind": "ipucu", "body": "Git senin bilgisayarında çalışır. İnternet olmadan da commit atabilirsin." },
+    { "type": "gate" },
+    { "type": "text", "body": "**GitHub** ise Git projelerini internette barındıran bir sitedir. Kodunu orada saklar, başkalarıyla paylaşır ve birlikte çalışırsın.\n\nKısacası: **Git** bir araçtır, **GitHub** o aracı kullanan projelerin buluşma yeridir." },
+    { "type": "choice", "question": "Hangisi projeleri internet üzerinde barındıran sitedir?", "options": ["Git", "GitHub", "VS Code", "Terminal"], "answer": 1, "hint": "Git bilgisayarında çalışan araçtır. Siteyi arıyoruz.", "explain": "GitHub, Git projelerinin internetteki evidir." },
+    { "type": "gate" },
+    { "type": "fill", "question": "Git'te bir kayıt noktasına ne denir?", "template": "Bir kayıt noktasına Git'te ___ denir.", "answers": ["commit"], "size": 10, "hint": "Yukarıdaki listede her satır bir ... idi. Tek kelime, İngilizce.", "explain": "Commit, projenin o andaki halinin kaydıdır." },
+    { "type": "choice", "question": "Git, internet bağlantısı olmadan çalışır mı?", "options": ["Evet, Git senin bilgisayarında çalışır", "Hayır, her komut için GitHub gerekir"], "answer": 0, "hint": "Git ile GitHub'ı karıştırma. Hangisi bilgisayarında çalışıyordu?", "explain": "Commit'leri internetsiz atar, sonra GitHub'a gönderirsin." }
+  ]
+}

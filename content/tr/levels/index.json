@@ -1,0 +1,23 @@
+{
+  "sections": [
+    { "id": "temeller", "title": "Temeller" },
+    { "id": "acik-kaynak", "title": "Açık kaynak" },
+    { "id": "kurtarma", "title": "Kurtarma" },
+    { "id": "final", "title": "Final" }
+  ],
+  "levels": [
+    { "id": "01", "section": "temeller", "title": "Git ve GitHub nedir?", "file": "01-git-nedir.json" },
+    { "id": "02", "section": "temeller", "title": "Git nasıl çalışır?", "file": "02-nasil-calisir.json" },
+    { "id": "03", "section": "temeller", "title": ".git klasörü", "file": "03-git-klasoru.json" },
+    { "id": "04", "section": "temeller", "title": "Kurulum ve VS Code", "file": "04-kurulum.json" },
+    { "id": "05", "section": "temeller", "title": "Üç temel komut: add, commit, push", "file": "05-uc-komut.json" },
+    { "id": "06", "section": "acik-kaynak", "title": "Neden her yere push edemezsin?", "file": "06-push-yetkisi.json" },
+    { "id": "07", "section": "acik-kaynak", "title": "Fork ve clone farkı", "file": "07-fork-clone.json" },
+    { "id": "08", "section": "acik-kaynak", "title": "good first issue bulmak", "file": "08-first-issue.json" },
+    { "id": "09", "section": "acik-kaynak", "title": "Issue ve pull request adabı", "file": "09-issue-pr.json" },
+    { "id": "10", "section": "kurtarma", "title": "git log", "file": "10-log.json" },
+    { "id": "11", "section": "kurtarma", "title": "git stash ve git revert", "file": "11-stash-revert.json" },
+    { "id": "12", "section": "kurtarma", "title": "Merge conflict'e kısa bakış", "file": "12-conflict.json" },
+    { "id": "13", "section": "final", "title": "İlk katkın: uni_101", "file": "13-uni101.json" }
+  ]
+}

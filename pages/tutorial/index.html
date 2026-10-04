@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#FFFFFF">
+  <title>Rehber | Adım Adım Git</title>
+  <link rel="stylesheet" href="../../shared/tokens.css">
+  <link rel="stylesheet" href="../../shared/base.css">
+  <link rel="stylesheet" href="tutorial.css">
+  <script type="module" src="tutorial.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#lesson">İçeriğe geç</a>
+
+  <header class="topbar">
+    <button class="button button--secondary" id="menu" aria-expanded="false" aria-controls="sidebar">☰ Adımlar</button>
+    <span id="topbar-title">Adım Adım Git</span>
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar" aria-label="Adımlar">
+      <a class="sidebar__brand" href="../hero/">
+        <img src="../../shared/assets/logos/community-logo.jpeg" alt="" width="36" height="36">
+        <span><strong>Adım Adım Git</strong><br><small>AÜ-YAZGIT</small></span>
+      </a>
+      <nav id="nav" aria-label="Seviye listesi"></nav>
+      <button class="sidebar__reset" id="reset" type="button">Sıfırla</button>
+    </aside>
+    <div class="scrim" id="scrim" hidden></div>
+
+    <main class="lesson" id="lesson" tabindex="-1">
+      <div class="bar" role="progressbar" aria-label="İlerleme" aria-valuemin="0" aria-valuemax="100" id="barwrap"><div class="bar__fill" id="bar"></div></div>
+      <article class="lesson__body" id="content"><p class="fallback">Yükleniyor…</p></article>
+      <div class="lesson__nav" id="lessonnav">
+        <a class="button button--secondary" id="prev" href="#/01">← Önceki</a>
+        <button class="button" id="next" type="button">Anladım, devam et</button>
+      </div>
+    </main>
+  </div>
+  <noscript><p class="fallback">Rehber için JavaScript gerekir.</p></noscript>
+</body>
+</html>

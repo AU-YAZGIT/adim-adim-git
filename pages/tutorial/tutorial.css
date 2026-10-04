@@ -1,0 +1,93 @@
+/* ==========================================================================
+   pages/tutorial/tutorial.css: yalnızca tutorial'a özgü stiller.
+   Butonlar ve çubuk her zaman marka sarısı; branch rengi sadece sidebar
+   grafiği ile blok kenarlıklarında kullanılır.
+   ========================================================================== */
+
+.button { --branch: var(--color-accent); --on-branch: var(--color-on-accent); }
+.button:disabled { opacity: 0.5; cursor: not-allowed; filter: none; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+.layout { display: grid; grid-template-columns: 300px 1fr; min-height: 100vh; }
+
+/* Sidebar: git grafiği (bölüm = branch, seviye = commit) */
+.sidebar {
+  position: sticky; top: 0; height: 100vh; overflow-y: auto;
+  display: flex; flex-direction: column; gap: var(--space-2);
+  padding: var(--space-3) var(--space-2);
+  background: var(--color-subtle); border-right: 1px solid var(--color-line);
+}
+.sidebar__brand { display: flex; align-items: center; gap: var(--space-1); color: var(--color-ink); text-decoration: none; line-height: 1.25; }
+.sidebar__brand img { border-radius: var(--radius-md); }
+.sidebar__brand small { color: var(--color-muted); }
+#nav { flex: 1; }
+.graph { margin-bottom: var(--space-2); }
+.graph__branch { display: flex; align-items: center; gap: var(--space-1); margin: 0 0 0.25rem; font-size: 0.9375rem; color: var(--branch-text); }
+.graph__branch::before { content: ""; width: 12px; height: 12px; border-radius: 50%; background: var(--branch); }
+.graph ol { list-style: none; margin: 0; padding: 0; }
+.graph__commit { display: flex; align-items: center; gap: var(--space-1); padding: 0.3rem 0.5rem; border-radius: var(--radius-md); color: var(--color-ink); text-decoration: none; font-size: 0.875rem; }
+.graph__commit:hover { background: var(--color-line); }
+.graph__commit[aria-current="step"] { font-weight: 600; background: var(--color-surface); box-shadow: inset 0 0 0 1px var(--color-line); }
+.graph__dot { flex: none; display: grid; place-items: center; width: 18px; height: 18px; border-radius: 50%; border: 2px solid var(--branch); background: var(--color-subtle); color: var(--on-branch); font-size: 0.65rem; font-weight: 700; }
+.is-done .graph__dot { background: var(--branch); }
+.is-cur .graph__dot { box-shadow: 0 0 0 3px color-mix(in srgb, var(--branch) 30%, transparent); }
+.sidebar__reset { align-self: flex-start; background: none; border: 0; padding: 0; color: var(--color-muted); font: inherit; font-size: 0.8125rem; text-decoration: underline; cursor: pointer; }
+
+/* Ders alanı */
+.bar { position: sticky; top: 0; z-index: 5; height: 4px; background: var(--color-line); }
+.bar__fill { height: 100%; width: 0; background: var(--color-accent); transition: width 0.3s; }
+.lesson { min-width: 0; outline: none; }
+.lesson__body { max-width: var(--measure); margin: 0 auto; padding: var(--space-4) var(--space-3) var(--space-2); }
+.lesson__kicker { margin: 0; font-size: 0.875rem; font-weight: 600; color: var(--branch-text); }
+.lesson__body h1 { margin: 0.25rem 0 var(--space-3); font-size: 1.75rem; line-height: 1.25; outline: none; }
+.lesson__body p { margin: 0 0 var(--space-2); }
+.lesson__nav { display: flex; justify-content: space-between; align-items: center; gap: var(--space-2); max-width: var(--measure); margin: 0 auto; padding: var(--space-2) var(--space-3) var(--space-5); }
+.lesson__nav #next { margin-left: auto; }
+.lesson__nav .button { padding: 0.5rem 1.25rem; font-size: 1rem; }
+
+/* Bloklar */
+.reveal { animation: pop 0.25s ease-out; scroll-margin-top: 5rem; }
+@keyframes pop { from { opacity: 0; transform: translateY(6px); } }
+.code { position: relative; margin: 0 0 var(--space-2); }
+.code pre { margin: 0; padding: var(--space-2); padding-right: 5.5rem; overflow-x: auto; background: var(--color-code-bg); color: var(--color-code-text); border: 1px solid var(--color-line); border-radius: var(--radius-md); font: 0.875rem/1.5 var(--font-mono); }
+.code pre code { padding: 0; background: none; font: inherit; }
+.code__copy { position: absolute; top: 0.4rem; right: 0.4rem; padding: 0.15rem 0.6rem; font-size: 0.75rem; }
+.note, .quiz { margin: 0 0 var(--space-2); padding: var(--space-2); border: 1px solid var(--color-line); border-left: 4px solid var(--branch); border-radius: var(--radius-md); }
+.note { background: var(--tint-warning); }
+.note p:last-child, .quiz p:last-child { margin-bottom: 0; }
+.note--ipucu { background: var(--color-subtle); }
+.quiz { background: var(--color-surface); }
+.quiz__q { font-weight: 600; }
+.quiz fieldset { margin: 0 0 var(--space-2); padding: 0; border: 0; }
+.quiz label { display: flex; gap: var(--space-1); align-items: center; padding: 0.5rem 0.75rem; margin-bottom: 0.4rem; border: 1px solid var(--color-line); border-radius: var(--radius-md); cursor: pointer; }
+.quiz label:hover { background: var(--color-subtle); }
+.quiz__line { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; margin-bottom: var(--space-2); padding: var(--space-1) var(--space-2); background: var(--color-code-bg); border: 1px solid var(--color-line); border-radius: var(--radius-md); font: 0.9375rem var(--font-mono); }
+.quiz input[type="text"] { min-width: 8ch; padding: 0.25rem 0.5rem; border: 1px solid var(--color-muted); border-radius: var(--radius-md); font: inherit; background: #fff; }
+.quiz__pool, .quiz__seq { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: var(--space-1); }
+.quiz__seq { min-height: 2.5rem; padding: 0.4rem; list-style: none; margin-top: 0; border: 1px dashed var(--color-muted); border-radius: var(--radius-md); counter-reset: s; }
+.quiz__seq li::before { counter-increment: s; content: counter(s) ". "; color: var(--color-muted); }
+.chip { padding: 0.3rem 0.6rem; background: var(--color-subtle); border: 1px solid var(--color-line); border-radius: var(--radius-md); font: 0.875rem var(--font-mono); cursor: pointer; }
+.chip:disabled { opacity: 0.4; }
+.quiz__result { margin: var(--space-1) 0 0; padding: 0; font-weight: 500; }
+.quiz__result.ok { color: var(--color-success); }
+.quiz__result.no { color: var(--color-error); }
+.quiz.is-solved { background: var(--tint-success); }
+.finish { padding: var(--space-3); background: var(--color-subtle); border: 1px solid var(--color-line); border-radius: var(--radius-lg); }
+
+/* Mobil: sidebar çekmeceye dönüşür */
+.topbar, .scrim { display: none; }
+@media (max-width: 800px) {
+  .layout { display: block; }
+  .topbar { position: sticky; top: 0; z-index: 10; display: flex; align-items: center; gap: var(--space-1); padding: var(--space-1) var(--space-2); background: var(--color-surface); border-bottom: 1px solid var(--color-line); font-weight: 600; }
+  .bar { top: 3.4rem; }
+  .sidebar { position: fixed; z-index: 30; left: 0; top: 0; width: min(320px, 85vw); transform: translateX(-100%); transition: transform 0.2s; }
+  .sidebar.is-open { transform: none; }
+  .scrim { position: fixed; inset: 0; z-index: 20; background: rgb(31 35 40 / 0.4); }
+  .scrim:not([hidden]) { display: block; }
+  .lesson__body { padding-inline: var(--space-2); }
+  .lesson__nav { padding-inline: var(--space-2); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal { animation: none; }
+  .bar__fill, .sidebar { transition: none; }
+}
