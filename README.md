@@ -71,10 +71,7 @@ Bu rehber, topluluğumuzun öğrencileri tarafından hazırlanmıştır.
 
 | Rol | Kişi |
 |---|---|
-| Proje yöneticisi | Ad Soyad |
-| İçerik | Ad Soyad |
-| Tasarım | Ad Soyad, Ad Soyad |
-| Geliştirme | Ad Soyad |
+| Proje yöneticisi | altCourier |
 
 ## Lisans
 
@@ -84,4 +81,4 @@ Bu rehber, topluluğumuzun öğrencileri tarafından hazırlanmıştır.
 
 **Ankara Üniversitesi Yapay Zeka ve Görüntü İşleme Topluluğu (AÜ-YAZGIT)**
 
-[Web Sitesi](https://www.yazgit.com.tr/) · [LinkedIn](https://tr.linkedin.com/company/au-yazgit) · [Instagram](https://www.instagram.com/au_yazgit/) · [GitHub](https://github.com/AU-YAZGIT)
+[Web Sitesi](https://www.yazgit.com) · [LinkedIn](https://tr.linkedin.com/company/au-yazgit) · [Instagram](https://www.instagram.com/au_yazgit/) · [GitHub](https://github.com/AU-YAZGIT)
