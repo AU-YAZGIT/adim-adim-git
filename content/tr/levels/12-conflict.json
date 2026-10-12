@@ -1,0 +1,20 @@
+{
+  "id": "12",
+  "blocks": [
+    {"type": "text", "body": "Bir gün şu mesajı göreceksin: **CONFLICT**. Panik yok, bu bir hata değil, Git'in \"burada karar vermem gerekiyor, sen seç\" demesi."},
+    {"type": "text", "body": "**Merge conflict** (birleştirme çakışması), iki kişi (ya da iki branch) **aynı dosyanın aynı satırını** farklı şekilde değiştirdiğinde olur. Git hangisinin doğru olduğunu bilemez, kararı sana bırakır."},
+    {"type": "code", "lang": "text", "body": "$ git pull\nCONFLICT (content): Merge conflict in index.html\nAutomatic merge failed; fix conflicts and then commit the result."},
+    {"type": "note", "kind": "ipucu", "body": "Çakışma genellikle `git pull` ya da `git merge` sırasında çıkar. Dosyalarda değişiklik yapmış olman sorun değil, sadece aynı satıra dokunmuş olmak çakışma yaratır."},
+    {"type": "gate"},
+    {"type": "text", "body": "Git çakışan dosyanın içine işaretler koyar. Dosyayı açtığında şunu görürsün:"},
+    {"type": "code", "lang": "text", "body": "<<<<<<< HEAD\n<h1>Merhaba Dünya</h1>\n=======\n<h1>Selam Dünya</h1>\n>>>>>>> yazim-hatasi-duzelt"},
+    {"type": "text", "body": "**`<<<<<<< HEAD`** ile **`=======`** arası: senin tarafındaki sürüm.\n\n**`=======`** ile **`>>>>>>>`** arası: karşı tarafın sürümü.\n\nÇözüm: dosyayı olması gereken **son haline** getirirsin ve bu üç işaret satırını da **silersin**."},
+    {"type": "fill", "question": "İki sürümü birbirinden ayıran satır hangisidir? (Yedi karakter.)", "template": "Ayırıcı satır: ___", "answers": ["======="], "patterns": ["^={7}$"], "size": 10, "hint": "Eşittir işaretinden yedi tane.", "explain": "======= satırı iki sürümü böler. Hepsi bittiğinde dosyada hiçbir işaret kalmamalı."},
+    {"type": "note", "kind": "ipucu", "body": "VS Code çakışmayı renkli gösterir ve üstüne **Accept Current / Accept Incoming / Accept Both** düğmeleri koyar. Elle yazmana gerek kalmaz."},
+    {"type": "gate"},
+    {"type": "order", "question": "Bir çakışmayı çözme adımlarını sırala.", "prompt": "Adımları doğru sırayla seç:", "items": ["Çakışan dosyayı aç", "Dosyayı son haline getirip işaretleri sil", "git add çakışan-dosya", "git commit"], "hint": "Önce çöz, sonra Git'e çözdüğünü söyle, en sonda kaydet.", "explain": "git add, \"bu dosyayı çözdüm\" demektir. Hepsini ekleyip commit atınca birleştirme tamamlanır."},
+    {"type": "choice", "question": "Çakışan dosyayı düzenleyip kaydettin ama `<<<<<<<` işaretlerini silmedin. Sonra commit attın. Ne olur?", "options": ["Dosyada işaret satırları kalır ve proje bozulur", "Git işaretleri kendiliğinden siler", "Hiçbir şey olmaz"], "answer": 0, "hint": "Git işaretleri senin yerine temizler mi?", "explain": "İşaretler dosyanın normal içeriği olarak commit edilir. Kodun derlenmez ya da sayfan bozuk görünür. Commit'ten önce dosyada <<<<<<< aramak iyi bir alışkanlık."},
+    {"type": "text", "body": "Çakışmayı çözmek istemiyorsan ya da karıştırdığını düşünüyorsan birleştirmeyi iptal edip başa dönebilirsin:"},
+    {"type": "type", "question": "Yarım kalan birleştirmeyi iptal eden komutu yaz.", "template": "$ ___", "answers": ["git merge --abort"], "patterns": ["^git\\s+merge\\s+--abort$"], "size": 20, "hint": "git merge ve ardından \"vazgeç, iptal et\" anlamına gelen bayrak (iki tire ile).", "explain": "git merge --abort, birleştirme öncesi haline döner. Çakışmadan korkma, her zaman geri dönebilirsin."}
+  ]
+}
