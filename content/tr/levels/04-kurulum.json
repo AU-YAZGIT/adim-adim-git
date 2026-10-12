@@ -1,0 +1,19 @@
+{
+  "id": "04",
+  "blocks": [
+    {"type": "text", "body": "Şimdiye kadar Git'i anlattık. Şimdi bilgisayarına kuralım. İki şeye ihtiyacın var: **Git** ve rahat bir kod editörü olan **VS Code**."},
+    {"type": "text", "body": "**Git'i kurmak:**\n\n**Windows:** git-scm.com adresinden indirip kur, varsayılan seçenekler yeterli.\n\n**Mac:** terminale `git --version` yaz, kurulu değilse macOS kurmayı önerir.\n\n**Linux (Ubuntu/Debian):** `sudo apt install git`"},
+    {"type": "text", "body": "**VS Code'u kurmak:** code.visualstudio.com adresinden indir. Kurduktan sonra bir klasörü açabilir ve içindeki terminali kullanabilirsin."},
+    {"type": "note", "kind": "ipucu", "body": "VS Code'da terminali açmak için **Ctrl + `** kısayolunu kullan. Terminal otomatik olarak açık klasörde başlar."},
+    {"type": "gate"},
+    {"type": "text", "body": "Kurulumun çalıştığını bir komutla kontrol edersin. Git kuruluysa sürüm numarasını yazar:"},
+    {"type": "code", "lang": "text", "body": "$ git --version\ngit version 2.45.0"},
+    {"type": "type", "question": "Git'in kurulu olup olmadığını ve sürümünü gösteren komutu yaz.", "template": "$ ___", "answers": ["git --version"], "patterns": ["^git\\s+(--version|-v)$"], "size": 16, "hint": "git yaz, ardından iki tire ve \"sürüm\" anlamına gelen İngilizce kelime.", "explain": "Sürüm numarasını görüyorsan Git kurulu demektir. Numaran farklı olabilir, sorun değil."},
+    {"type": "gate"},
+    {"type": "text", "body": "Commit'lerin üzerinde senin adın olacağı için Git'e **kim olduğunu** bir kez söylemen gerekir. Bunu iki komutla yaparsın:"},
+    {"type": "code", "lang": "bash", "body": "git config --global user.name \"Ad Soyad\"\ngit config --global user.email \"sen@ornek.com\""},
+    {"type": "note", "kind": "dikkat", "body": "E-posta olarak GitHub hesabında kullandığın adresi yaz. Böylece commit'lerin profilinle eşleşir."},
+    {"type": "choice", "question": "`--global` ne demek?", "options": ["Ayar bu bilgisayardaki tüm Git projelerinde geçerli olur", "Ayar GitHub'a gönderilir", "Ayar sadece bir kere kullanılabilir"], "answer": 0, "hint": "Global, \"genel\" demek. Tek bir proje için mi, hepsi için mi?", "explain": "--global ile ayarı bir kez yaparsın, bu bilgisayardaki bütün projelerde kullanılır."},
+    {"type": "type", "question": "Git'e adını tanıtan komutu yaz. (Adın ne olursa olsun, tırnak içinde yaz.)", "template": "$ ___", "answers": [], "patterns": ["^git\\s+config\\s+--global\\s+user\\.name\\s+\".+\"$"], "size": 36, "hint": "git config --global user.name ve sonra tırnak içinde adın.", "explain": "Artık Git commit'lerinin altına adını yazacak. Bir sonraki adımda ilk commit'ini atıyorsun."}
+  ]
+}
