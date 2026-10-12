@@ -1,0 +1,22 @@
+{
+  "id": "09",
+  "blocks": [
+    {"type": "text", "body": "Açık kaynakta kod kadar **iletişim** de önemlidir. Bakımcılar çoğu zaman gönüllüdür ve çok sayıda mesaj okurlar. İyi issue ve pull request (PR) onların işini kolaylaştırır, katkının kabul edilme şansını artırır."},
+    {"type": "text", "body": "**İyi bir issue** şunları içerir:\n\n**Net başlık:** sorunu tek cümlede anlatır.\n\n**Adımlar:** hatayı nasıl yeniden üretirsin.\n\n**Beklenen ve gerçekleşen sonuç.**\n\nİssue açmadan önce aynı konuda zaten bir issue olup olmadığına da bak."},
+    {"type": "code", "lang": "text", "body": "Başlık: Giriş formu boş e-postayla gönderiliyor\n\nAdımlar:\n1. Giriş sayfasını aç\n2. E-posta alanını boş bırak\n3. \"Gönder\"e bas\n\nBeklenen: \"E-posta gerekli\" uyarısı\nGerçekleşen: Form hata vermeden gönderiliyor"},
+    {"type": "choice", "question": "Hangi issue başlığı en iyisi?", "options": ["Çalışmıyor", "Yardım!!!", "Giriş formu boş e-postayla gönderiliyor", "Bir sorun var galiba"], "answer": 2, "hint": "Başlığı okuyan biri sorunun ne olduğunu anlamalı.", "explain": "Net başlık, bakımcının sorunu hızlıca anlamasını sağlar."},
+    {"type": "gate"},
+    {"type": "text", "body": "Şimdi pull request'e geçelim. Değişikliklerini **ana branch'e değil**, her zaman yeni bir **branch**'e yaparsın. Branch, ana çizgiden ayrılan paralel bir yoldur. Böylece her değişiklik kendi PR'ına kavuşur."},
+    {"type": "code", "lang": "bash", "body": "git switch -c yazim-hatasi-duzelt"},
+    {"type": "type", "question": "`yazim-hatasi-duzelt` adında yeni bir branch oluşturup ona geçen komutu yaz.", "template": "$ ___", "answers": ["git switch -c yazim-hatasi-duzelt", "git checkout -b yazim-hatasi-duzelt"], "patterns": ["^git\\s+(switch\\s+-c|checkout\\s+-b)\\s+[\\w./-]+$"], "size": 34, "hint": "git switch ve yeni oluşturmak için -c, ardından branch adı. (Eski usulle git checkout -b de olur.)", "explain": "-c \"create\" yani oluştur demektir. Branch adı kısa ve ne yaptığını anlatan türden olmalı."},
+    {"type": "gate"},
+    {"type": "text", "body": "Yeni branch'te değişikliğini yap, `add` ve `commit` ile kaydet. Branch'i ilk kez push ederken GitHub'a onu da tanıtırsın:"},
+    {"type": "code", "lang": "bash", "body": "git push -u origin yazim-hatasi-duzelt"},
+    {"type": "order", "question": "Yeni bir branch'te çalışıp onu GitHub'a gönderme sırasını belirle.", "prompt": "Komutları doğru sırayla seç:", "items": ["git switch -c duzeltme", "git add .", "git commit -m \"Yazım hatası düzeltildi\"", "git push -u origin duzeltme"], "hint": "Önce branch aç, sonra hazırla, kaydet, en sonda gönder.", "explain": "Bundan sonra GitHub'da \"Compare & pull request\" düğmesi çıkar, PR'ı oradan açarsın."},
+    {"type": "gate"},
+    {"type": "text", "body": "**İyi bir pull request:**\n\n**Küçük ve odaklıdır:** tek bir iş yapar.\n\n**Açıklama içerir:** ne değiştirdin ve neden?\n\n**İlgili issue'ya bağlanır.** Açıklamaya `Closes #12` yazarsan PR birleşince 12 numaralı issue otomatik kapanır."},
+    {"type": "fill", "question": "PR açıklamasında issue'yu otomatik kapatan anahtar kelimelerden birini yaz.", "template": "PR açıklaması: ___ #12", "answers": ["closes", "fixes", "resolves"], "patterns": ["^(close[sd]?|fix(es|ed)?|resolve[sd]?)$"], "size": 10, "hint": "\"Kapatır\", \"düzeltir\" ya da \"çözer\" anlamına gelen İngilizce fiillerden biri.", "explain": "Closes, Fixes ve Resolves (ve çekimleri) aynı işi yapar. PR birleşince #12 numaralı issue kapanır."},
+    {"type": "choice", "question": "Bakımcı PR'ında değişiklik istedi. Ne yaparsın?", "options": ["PR'ı kapatıp yenisini açarım", "Aynı branch'e yeni commit atıp push ederim, PR kendiliğinden güncellenir", "Bakımcıya ısrarla mesaj yazarım"], "answer": 1, "hint": "PR bir branch'e bağlıdır, o branch'e eklenen her şey PR'a yansır.", "explain": "Aynı branch'e push ettiğin her yeni commit PR'a otomatik eklenir. Yeni PR açmana gerek yok."},
+    {"type": "note", "kind": "ipucu", "body": "Yorumlara sakin ve nazik cevap ver, bakımcıların cevap vermesi günler sürebilir. Eleştiri sana değil, koda yöneliktir. Teşekkür etmek de iyi bir alışkanlıktır."}
+  ]
+}
