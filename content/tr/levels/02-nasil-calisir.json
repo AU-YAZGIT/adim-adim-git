@@ -1,0 +1,19 @@
+{
+  "id": "02",
+  "blocks": [
+    {"type": "text", "body": "İlk adımda Git'in kayıt noktaları (commit) tuttuğunu öğrendin. Peki bir kayıt noktası nasıl oluşuyor? Git bunu **üç ayrı alan** üzerinden yapar."},
+    {"type": "text", "body": "**Çalışma klasörü:** dosyalarını düzenlediğin, gözünle gördüğün normal klasör.\n\n**Hazırlık alanı (staging area):** bir sonraki commit'e hangi değişikliklerin gireceğini seçtiğin bekleme odası.\n\n**Depo (repository):** commit'lerin kalıcı olarak saklandığı yer."},
+    {"type": "code", "lang": "text", "body": "Çalışma klasörü  --add-->  Hazırlık alanı  --commit-->  Depo"},
+    {"type": "note", "kind": "ipucu", "body": "Grup fotoğrafı gibi düşün: önce kimlerin kareye gireceğini ayarlarsın (hazırlık alanı), sonra deklanşöre basarsın (commit)."},
+    {"type": "gate"},
+    {"type": "text", "body": "Hazırlık alanı neden var? Çünkü bazen aynı anda iki dosyayı değiştirirsin ama hepsini aynı kayda koymak istemezsin.\n\nÖrneğin `giris.html` üzerinde çalışırken `notlar.txt`'ye de kendine not yazdın. Sadece `giris.html`'i hazırlık alanına alırsan, commit'e yalnızca o girer."},
+    {"type": "order", "question": "Bir değişikliğin commit olana kadarki yolculuğunu sırala.", "prompt": "Adımları doğru sırayla seç:", "items": ["Dosyayı düzenle", "Değişikliği hazırlık alanına ekle", "Commit at"], "hint": "Önce bir şey değiştirirsin, sonra neyin kayda gireceğini seçersin, en sonda kaydedersin.", "explain": "Düzenle, hazırla, kaydet. Git'in tüm günlük döngüsü bu üç adımdır."},
+    {"type": "choice", "question": "Hangi alan, \"bir sonraki commit'e neler girecek?\" sorusunun cevabını tutar?", "options": ["Çalışma klasörü", "Hazırlık alanı", "Depo", "GitHub"], "answer": 1, "hint": "Commit'e girecek şeyleri seçip beklettiğin yer.", "explain": "Hazırlık alanı, commit'e girecek değişikliklerin listesidir."},
+    {"type": "gate"},
+    {"type": "text", "body": "Hangi dosya hangi alanda, nasıl görürsün? `git status` komutuyla. Git sana o anki durumu anlatır:"},
+    {"type": "code", "lang": "text", "body": "$ git status\nOn branch main\nChanges to be committed:\n        modified:   giris.html\n\nChanges not staged for commit:\n        modified:   notlar.txt"},
+    {"type": "text", "body": "**Changes to be committed:** hazırlık alanında, commit'e girmeye hazır.\n\n**Changes not staged for commit:** değişmiş ama henüz hazırlık alanına alınmamış."},
+    {"type": "choice", "question": "Yukarıdaki çıktıya göre şimdi commit atarsan ne olur?", "options": ["Yalnızca giris.html commit'e girer", "Yalnızca notlar.txt commit'e girer", "İki dosya da commit'e girer"], "answer": 0, "hint": "Hangisi \"Changes to be committed\" altında?", "explain": "notlar.txt hazırlık alanında olmadığı için commit'e girmez, çalışma klasöründe değişmiş halde bekler."},
+    {"type": "type", "question": "Şimdi sen yaz: projenin o anki durumunu gösteren komut hangisi?", "template": "$ ___", "answers": ["git status"], "patterns": ["^git\\s+status$"], "size": 14, "hint": "İki kelime: önce git, sonra \"durum\" anlamına gelen İngilizce kelime.", "explain": "git status, Git'te en çok kullanacağın komutlardan biridir. Şüphelendiğinde önce onu çalıştır."}
+  ]
+}
