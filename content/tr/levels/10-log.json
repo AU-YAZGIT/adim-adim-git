@@ -1,0 +1,20 @@
+{
+  "id": "10",
+  "blocks": [
+    {"type": "text", "body": "Git her commit'i saklıyor demiştik. Peki bu geçmişe nasıl bakarsın? **`git log`** ile. Bir projeye yeni katıldığında ya da bir hatanın ne zaman çıktığını ararken ilk bakacağın yer burasıdır."},
+    {"type": "code", "lang": "text", "body": "$ git log\ncommit a1b2c3d4e5f60718293a4b5c6d7e8f9012345678\nAuthor: Ayşe Yılmaz <ayse@ornek.com>\nDate:   Mon Oct 12 14:03:11 2026 +0300\n\n    Giriş sayfası eklendi\n\ncommit 9f8e7d6c5b4a39281706f5e4d3c2b1a098765432\nAuthor: Ayşe Yılmaz <ayse@ornek.com>\nDate:   Sun Oct 11 18:20:45 2026 +0300\n\n    README güncellendi"},
+    {"type": "text", "body": "Her commit için dört şey görürsün:\n\n**commit:** commit'in benzersiz kimliği (**hash**). Uzun bir sayı-harf dizisidir, ilk 7 karakteri çoğu zaman yeter.\n\n**Author:** kim yaptı?\n\n**Date:** ne zaman?\n\n**Mesaj:** ne yapıldı? Bu yüzden iyi mesaj yazmak önemli."},
+    {"type": "note", "kind": "ipucu", "body": "Log'da en yeni commit en üstte görünür. Aşağı indikçe geçmişe gidersin."},
+    {"type": "gate"},
+    {"type": "choice", "question": "`git log` çıktısında en üstteki commit hangisidir?", "options": ["En eski commit", "En yeni commit", "Rastgele bir commit"], "answer": 1, "hint": "Son yaptığın işi en üstte görmek istersin.", "explain": "Git geçmişi yeniden eskiye doğru listeler."},
+    {"type": "text", "body": "Uzun çıktı okumak zor. **`--oneline`** her commit'i tek satıra sığdırır: kısa hash ve mesaj."},
+    {"type": "code", "lang": "text", "body": "$ git log --oneline\na1b2c3d Giriş sayfası eklendi\n9f8e7d6 README güncellendi\n4c5d6e7 İlk commit"},
+    {"type": "type", "question": "Geçmişi her commit tek satır olacak şekilde gösteren komutu yaz.", "template": "$ ___", "answers": ["git log --oneline"], "patterns": ["^git\\s+log\\s+(--oneline|--pretty=oneline)$"], "size": 20, "hint": "git log ve sonra \"tek satır\" anlamına gelen bayrak (iki tire ile).", "explain": "Bu tek satırlık hash'leri bir sonraki adımda revert ederken kullanacaksın."},
+    {"type": "gate"},
+    {"type": "text", "body": "Çok commit varsa sadece sonuncuları görmek isteyebilirsin. `-3` son üç commit'i gösterir:"},
+    {"type": "code", "lang": "bash", "body": "git log -3\ngit log --oneline -3"},
+    {"type": "type", "question": "Sadece son 3 commit'i tek satırda gösteren komutu yaz.", "template": "$ ___", "answers": ["git log --oneline -3"], "patterns": ["^git\\s+log\\s+((--oneline\\s+(-3|-n\\s?3))|((-3|-n\\s?3)\\s+--oneline))$"], "size": 24, "hint": "git log, --oneline ve son kaç commit olduğunu söyleyen -3. Sıra fark etmez.", "explain": "-3 ile -n 3 aynı işi yapar. Uzun projelerde bu çok işine yarar."},
+    {"type": "note", "kind": "dikkat", "body": "Log uzunsa ekran bir okuyucuda (pager) açılır ve komut satırına dönmezsin. Çıkmak için **q** tuşuna bas."},
+    {"type": "fill", "question": "Log ekranından çıkmak için hangi tuşa basarsın?", "template": "Çıkmak için ___ tuşuna bas.", "answers": ["q"], "patterns": ["^q$"], "size": 4, "hint": "\"quit\" kelimesinin ilk harfi.", "explain": "q çıkış tuşudur. Ok tuşları ve boşluk ile de kaydırabilirsin."}
+  ]
+}
