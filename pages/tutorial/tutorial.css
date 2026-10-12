@@ -4,6 +4,8 @@
    grafiği ile blok kenarlıklarında kullanılır.
    ========================================================================== */
 
+:root { --lesson-size: clamp(1.125rem, 1.05rem + 0.3vw, 1.3rem); } /* ~18px → ~21px */
+
 .button { --branch: var(--color-accent); --on-branch: var(--color-on-accent); }
 .button:disabled { opacity: 0.5; cursor: not-allowed; filter: none; }
 .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
@@ -12,14 +14,17 @@
 
 /* Sidebar: git grafiği (bölüm = branch, seviye = commit) */
 .sidebar {
-  position: sticky; top: 0; height: 100vh; overflow-y: auto;
+  position: sticky; top: 0; height: 100vh; overflow-y: auto; min-width: 0;
   display: flex; flex-direction: column; gap: var(--space-2);
   padding: var(--space-3) var(--space-2);
   background: var(--color-subtle); border-right: 1px solid var(--color-line);
 }
+.sidebar__head { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--space-1); }
 .sidebar__brand { display: flex; align-items: center; gap: var(--space-1); color: var(--color-ink); text-decoration: none; line-height: 1.25; }
 .sidebar__brand img { border-radius: var(--radius-md); }
 .sidebar__brand small { color: var(--color-muted); }
+.sidebar__collapse { flex: none; width: 2rem; height: 2rem; display: grid; place-items: center; background: none; border: 1px solid transparent; border-radius: var(--radius-md); color: var(--color-muted); font-size: 1.1rem; cursor: pointer; }
+.sidebar__collapse:hover { background: var(--color-line); color: var(--color-ink); }
 #nav { flex: 1; }
 .graph { margin-bottom: var(--space-2); }
 .graph__branch { display: flex; align-items: center; gap: var(--space-1); margin: 0 0 0.25rem; font-size: 0.9375rem; color: var(--branch-text); }
@@ -36,22 +41,33 @@
 /* Ders alanı */
 .bar { position: sticky; top: 0; z-index: 5; height: 4px; background: var(--color-line); }
 .bar__fill { height: 100%; width: 0; background: var(--color-accent); transition: width 0.3s; }
-.lesson { min-width: 0; outline: none; }
+.lesson { min-width: 0; outline: none; font-size: var(--lesson-size); line-height: 1.65; }
 .lesson__body { max-width: var(--measure); margin: 0 auto; padding: var(--space-4) var(--space-3) var(--space-2); }
-.lesson__kicker { margin: 0; font-size: 0.875rem; font-weight: 600; color: var(--branch-text); }
-.lesson__body h1 { margin: 0.25rem 0 var(--space-3); font-size: 1.75rem; line-height: 1.25; outline: none; }
+.lesson__kicker { margin: 0; font-size: 0.85em; font-weight: 600; color: var(--branch-text); }
+.lesson__body h1 { margin: 0.25rem 0 var(--space-3); font-size: 1.9em; line-height: 1.25; outline: none; }
 .lesson__body p { margin: 0 0 var(--space-2); }
 .lesson__nav { display: flex; justify-content: space-between; align-items: center; gap: var(--space-2); max-width: var(--measure); margin: 0 auto; padding: var(--space-2) var(--space-3) var(--space-5); }
 .lesson__nav #next { margin-left: auto; }
-.lesson__nav .button { padding: 0.5rem 1.25rem; font-size: 1rem; }
+.lesson__nav .button { padding: 0.5rem 1.25rem; font-size: 0.95em; }
 
 /* Bloklar */
-.reveal { animation: pop 0.25s ease-out; scroll-margin-top: 5rem; }
-@keyframes pop { from { opacity: 0; transform: translateY(6px); } }
+.reveal { animation: pop 0.45s cubic-bezier(0.2, 0.8, 0.2, 1) backwards; scroll-margin-top: 5rem; }
+@keyframes pop { from { opacity: 0; transform: translateY(16px) scale(0.98); } }
+
+/* "Anladım, devam et" düğmesi animasyonu */
+#next { position: relative; }
+#next.is-pressed { animation: press 0.35s ease-out; }
+#next.is-pressed::after {
+  content: ""; position: absolute; inset: -1px; border-radius: inherit; pointer-events: none;
+  border: 2px solid var(--color-accent); animation: ring 0.6s ease-out forwards;
+}
+@keyframes press { 30% { transform: scale(0.93); } 60% { transform: scale(1.05); } }
+@keyframes ring  { from { opacity: 0.9; transform: scale(1); } to { opacity: 0; transform: scale(1.6); } }
+
 .code { position: relative; margin: 0 0 var(--space-2); }
-.code pre { margin: 0; padding: var(--space-2); padding-right: 5.5rem; overflow-x: auto; background: var(--color-code-bg); color: var(--color-code-text); border: 1px solid var(--color-line); border-radius: var(--radius-md); font: 0.875rem/1.5 var(--font-mono); }
+.code pre { margin: 0; padding: var(--space-2); padding-right: 5.5rem; overflow-x: auto; background: var(--color-code-bg); color: var(--color-code-text); border: 1px solid var(--color-line); border-radius: var(--radius-md); font: 0.85em/1.55 var(--font-mono); }
 .code pre code { padding: 0; background: none; font: inherit; }
-.code__copy { position: absolute; top: 0.4rem; right: 0.4rem; padding: 0.15rem 0.6rem; font-size: 0.75rem; }
+.code__copy { position: absolute; top: 0.4rem; right: 0.4rem; padding: 0.15rem 0.6rem; font-size: 0.8rem; }
 .note, .quiz { margin: 0 0 var(--space-2); padding: var(--space-2); border: 1px solid var(--color-line); border-left: 4px solid var(--branch); border-radius: var(--radius-md); }
 .note { background: var(--tint-warning); }
 .note p:last-child, .quiz p:last-child { margin-bottom: 0; }
@@ -61,12 +77,13 @@
 .quiz fieldset { margin: 0 0 var(--space-2); padding: 0; border: 0; }
 .quiz label { display: flex; gap: var(--space-1); align-items: center; padding: 0.5rem 0.75rem; margin-bottom: 0.4rem; border: 1px solid var(--color-line); border-radius: var(--radius-md); cursor: pointer; }
 .quiz label:hover { background: var(--color-subtle); }
-.quiz__line { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; margin-bottom: var(--space-2); padding: var(--space-1) var(--space-2); background: var(--color-code-bg); border: 1px solid var(--color-line); border-radius: var(--radius-md); font: 0.9375rem var(--font-mono); }
+.quiz .button { font-size: 0.9em; }
+.quiz__line { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; margin-bottom: var(--space-2); padding: var(--space-1) var(--space-2); background: var(--color-code-bg); border: 1px solid var(--color-line); border-radius: var(--radius-md); font: 0.9em var(--font-mono); }
 .quiz input[type="text"] { min-width: 8ch; padding: 0.25rem 0.5rem; border: 1px solid var(--color-muted); border-radius: var(--radius-md); font: inherit; background: #fff; }
 .quiz__pool, .quiz__seq { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: var(--space-1); }
 .quiz__seq { min-height: 2.5rem; padding: 0.4rem; list-style: none; margin-top: 0; border: 1px dashed var(--color-muted); border-radius: var(--radius-md); counter-reset: s; }
 .quiz__seq li::before { counter-increment: s; content: counter(s) ". "; color: var(--color-muted); }
-.chip { padding: 0.3rem 0.6rem; background: var(--color-subtle); border: 1px solid var(--color-line); border-radius: var(--radius-md); font: 0.875rem var(--font-mono); cursor: pointer; }
+.chip { padding: 0.3rem 0.6rem; background: var(--color-subtle); border: 1px solid var(--color-line); border-radius: var(--radius-md); font: 0.85em var(--font-mono); cursor: pointer; }
 .chip:disabled { opacity: 0.4; }
 .quiz__result { margin: var(--space-1) 0 0; padding: 0; font-weight: 500; }
 .quiz__result.ok { color: var(--color-success); }
@@ -74,10 +91,22 @@
 .quiz.is-solved { background: var(--tint-success); }
 .finish { padding: var(--space-3); background: var(--color-subtle); border: 1px solid var(--color-line); border-radius: var(--radius-lg); }
 
+/* Masaüstü: sidebar gizlenebilir */
+.sidebar-expand { display: none; }
+@media (min-width: 801px) {
+  .layout { transition: grid-template-columns 0.25s ease; }
+  .layout.is-collapsed { grid-template-columns: 0 1fr; }
+  .layout.is-collapsed .sidebar { visibility: hidden; padding-inline: 0; border-right-width: 0; transition: visibility 0s 0.25s; }
+  .sidebar-expand { display: inline-block; position: fixed; top: 0.75rem; left: 0.75rem; z-index: 15; }
+  .sidebar-expand[hidden] { display: none; }
+  .layout.is-collapsed .lesson__body { padding-top: calc(var(--space-4) + 2.5rem); } /* buton başlığın üstüne binmesin */
+}
+
 /* Mobil: sidebar çekmeceye dönüşür */
 .topbar, .scrim { display: none; }
 @media (max-width: 800px) {
   .layout { display: block; }
+  .sidebar__collapse { display: none; }
   .topbar { position: sticky; top: 0; z-index: 10; display: flex; align-items: center; gap: var(--space-1); padding: var(--space-1) var(--space-2); background: var(--color-surface); border-bottom: 1px solid var(--color-line); font-weight: 600; }
   .bar { top: 3.4rem; }
   .sidebar { position: fixed; z-index: 30; left: 0; top: 0; width: min(320px, 85vw); transform: translateX(-100%); transition: transform 0.2s; }
@@ -88,6 +117,6 @@
   .lesson__nav { padding-inline: var(--space-2); }
 }
 @media (prefers-reduced-motion: reduce) {
-  .reveal { animation: none; }
-  .bar__fill, .sidebar { transition: none; }
+  .reveal, #next.is-pressed, #next.is-pressed::after { animation: none; }
+  .bar__fill, .sidebar, .layout { transition: none; }
 }
