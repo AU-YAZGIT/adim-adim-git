@@ -1,0 +1,20 @@
+{
+  "id": "11",
+  "blocks": [
+    {"type": "text", "body": "Çalışırken iki tür sorunla karşılaşırsın: **yarım kalmış değişikliklerin** başka bir işin önüne geçmesi ve **hatalı bir commit** atmış olman. İkisinin de güvenli çözümü var: **stash** ve **revert**."},
+    {"type": "text", "body": "**`git stash`:** henüz commit etmediğin değişiklikleri geçici olarak bir kenara koyar. Çalışma klasörün temizlenir, istediğin zaman geri alırsın.\n\nÖrnek: bir şeyin ortasındasın ama acilen başka bir branch'e geçmen ya da `git pull` ile GitHub'daki yeni commit'leri indirmen gerekiyor."},
+    {"type": "code", "lang": "bash", "body": "git stash        # değişiklikleri kenara koy\ngit stash list   # kenardakileri listele\ngit stash pop    # geri getir ve listeden sil"},
+    {"type": "note", "kind": "dikkat", "body": "`git stash` varsayılan olarak sadece Git'in zaten izlediği dosyaları saklar. Yeni oluşturduğun dosyaları da saklamak için `git stash -u` kullan."},
+    {"type": "gate"},
+    {"type": "type", "question": "Commit etmediğin değişiklikleri geçici olarak kenara koyan komutu yaz.", "template": "$ ___", "answers": ["git stash"], "patterns": ["^git\\s+stash(\\s+(push|save))?$"], "size": 14, "hint": "git ve \"gizlemek, saklamak\" anlamına gelen kelime.", "explain": "git stash, çalışma klasörünü son commit haline döndürür. Değişikliklerin kaybolmaz, stash'te bekler."},
+    {"type": "type", "question": "Kenara koyduğun değişiklikleri geri getiren komutu yaz.", "template": "$ ___", "answers": ["git stash pop"], "patterns": ["^git\\s+stash\\s+(pop|apply)$"], "size": 16, "hint": "git stash ve ardından \"fırlat, çıkar\" anlamına gelen kelime.", "explain": "pop değişiklikleri geri getirir ve stash listesinden siler. apply ise silmez."},
+    {"type": "order", "question": "Yarım işin varken GitHub'daki yeni commit'leri güvenle indirmenin sırası nedir?", "prompt": "Komutları doğru sırayla seç:", "items": ["git stash", "git pull", "git stash pop"], "hint": "Önce kenara koy, sonra güncelle, en sonda geri getir.", "explain": "git pull, GitHub'daki yeni commit'leri indirir. Değişikliklerin stash'te güvende beklerken bunu yaparsın."},
+    {"type": "gate"},
+    {"type": "text", "body": "Şimdi hatalı commit'e gelelim. Diyelim ki bir commit'i atıp push ettin ve sonradan bozuk olduğunu fark ettin. **`git revert`** o commit'in yaptığı değişikliği geri alan **yeni bir commit** oluşturur."},
+    {"type": "code", "lang": "text", "body": "$ git log --oneline\nb7c8d9e Menüyü yeniden düzenle   <- bozuk\na1b2c3d Giriş sayfası eklendi\n\n$ git revert b7c8d9e\n$ git log --oneline\nf0e1d2c Revert \"Menüyü yeniden düzenle\"\nb7c8d9e Menüyü yeniden düzenle\na1b2c3d Giriş sayfası eklendi"},
+    {"type": "text", "body": "Dikkat et: revert geçmişi **silmez**, üstüne \"geri aldım\" diyen bir commit ekler. Bu yüzden GitHub'a push ettiğin ya da başkalarının da kullandığı commit'ler için en güvenli yöntemdir."},
+    {"type": "choice", "question": "`git revert` ne yapar?", "options": ["Commit'i geçmişten tamamen siler", "Commit'in etkisini geri alan yeni bir commit oluşturur", "Değişiklikleri stash'e koyar"], "answer": 1, "hint": "Geçmiş silinmez, ekleme yapılır.", "explain": "Revert, geçmişi bozmadan hatayı düzeltir. Herkesin elindeki geçmiş tutarlı kalır."},
+    {"type": "type", "question": "`b7c8d9e` hash'li commit'i geri alan komutu yaz.", "template": "$ ___", "answers": ["git revert b7c8d9e"], "patterns": ["^git\\s+revert\\s+(--no-edit\\s+)?([0-9a-f]{4,40}|head(~\\d+|\\^)?)$"], "size": 22, "hint": "git revert ve sonra commit'in hash'i.", "explain": "Git bir commit mesajı için editör açabilir. Kaydedip kapatman yeterli. Son commit'i geri almak için HEAD de yazabilirsin."},
+    {"type": "choice", "question": "Hangi durumda hangi komutu seçersin? \"Henüz commit etmediğim yarım değişikliklerim var, ama başka bir işe geçmem lazım.\"", "options": ["git revert", "git stash", "git log"], "answer": 1, "hint": "Commit yok, sadece yarım iş var.", "explain": "stash commit edilmemiş işi saklar. revert ise zaten commit edilmiş bir değişikliği geri alır."}
+  ]
+}
