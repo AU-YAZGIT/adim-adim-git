@@ -1,0 +1,22 @@
+{
+  "id": "13",
+  "blocks": [
+    {"type": "text", "body": "Buraya kadar geldin, artık bütün parçaları biliyorsun. Şimdi hepsini **gerçek bir projede** birleştirme zamanı: topluluğun **uni_101** reposuna ilk pull request'ini açacaksın."},
+    {"type": "text", "body": "Akış, dokuzuncu adımdaki ile aynı. Bu kez gerçekten yapıyorsun:\n\n1. Repoyu **fork** et (GitHub'da, kendi hesabına).\n2. **Kendi fork'unu** bilgisayarına **clone**'la.\n3. Yeni bir **branch** aç.\n4. Küçük bir değişiklik yap.\n5. `add`, `commit`, `push`.\n6. **Pull request** aç."},
+    {"type": "note", "kind": "ipucu", "body": "Repoda katkı yönergesi (**README** ya da **CONTRIBUTING.md**) varsa önce onu oku. İlk katkı için ne yapman gerektiği orada yazıyor."},
+    {"type": "gate"},
+    {"type": "text", "body": "Önce fork'unu clone'lamalısın. Burada adreste **kendi kullanıcı adın** olmalı, çünkü fork senin hesabında."},
+    {"type": "type", "question": "Kendi fork'undaki `uni_101` reposunu clone'layan komutu yaz. (Kendi kullanıcı adını ya da `kullanici` yazabilirsin.)", "template": "$ ___", "answers": ["git clone https://github.com/kullanici/uni_101.git"], "patterns": ["^git\\s+clone\\s+(https://github\\.com/|git@github\\.com:)[\\w.-]+/uni_101(\\.git)?/?$"], "size": 44, "hint": "git clone ve sonra https://github.com/KULLANICI-ADIN/uni_101", "explain": "Adresin ortasındaki kısım senin kullanıcı adındır. Orijinal repoyu değil, fork'unu clone'lamalısın."},
+    {"type": "text", "body": "Klasöre gir, yeni bir branch aç. Branch adını yaptığın işe göre ver:"},
+    {"type": "type", "question": "`ilk-katkim` adında yeni bir branch oluşturup ona geçen komutu yaz.", "template": "$ ___", "answers": ["git switch -c ilk-katkim"], "patterns": ["^git\\s+(switch\\s+-c|checkout\\s+-b)\\s+[\\w./-]+$"], "size": 26, "hint": "git switch -c ve branch adı.", "explain": "Her değişiklik için ayrı branch açmak, pull request'leri temiz tutar."},
+    {"type": "gate"},
+    {"type": "text", "body": "Değişikliğini yaptıktan sonra kaydet ve fork'una gönder:"},
+    {"type": "code", "lang": "bash", "body": "git add .\ngit commit -m \"Katılımcı listesine adımı ekle\"\ngit push -u origin ilk-katkim"},
+    {"type": "type", "question": "Yeni branch'ini ilk kez GitHub'a gönderen komutu yaz.", "template": "$ ___", "answers": ["git push -u origin ilk-katkim"], "patterns": ["^git\\s+push\\s+(-u\\s+|--set-upstream\\s+)?origin\\s+[\\w./-]+$"], "size": 30, "hint": "git push -u origin ve branch adı.", "explain": "-u, bu branch'i GitHub'daki karşılığına bağlar. Sonraki push'larda sadece git push yazman yeter."},
+    {"type": "order", "question": "İlk katkının tüm akışını sırala.", "prompt": "Adımları doğru sırayla seç:", "items": ["Repoyu fork et", "Kendi fork'unu clone'la", "Yeni branch aç", "Değişiklik yapıp commit at", "Branch'i fork'una push et", "Pull request aç"], "hint": "Kopyala, indir, branch aç, çalış, gönder, öner.", "explain": "Bu sıra yalnızca uni_101 için değil, GitHub'daki her açık kaynak projeye katkı yapmanın yolu."},
+    {"type": "gate"},
+    {"type": "text", "body": "Son adım: GitHub'da fork'una git. Yeni push'un için sarı bir **Compare & pull request** düğmesi çıkar. Tıkla, başlığa kısa ve net bir cümle, açıklamaya ne yaptığını yaz ve **Create pull request**'e bas."},
+    {"type": "note", "kind": "dikkat", "body": "Bir hata yaparsan ya da değişiklik istenirse sorun değil. Aynı branch'e yeni commit atıp push et, PR kendiliğinden güncellenir. Takılırsan topluluğa sormaktan çekinme."},
+    {"type": "choice", "question": "Pull request'inde bakımcı küçük bir düzeltme istedi. Ne yaparsın?", "options": ["PR'ı kapatıp yeniden açarım", "Aynı branch'te düzeltip commit atıp push ederim", "Fork'u silip baştan başlarım"], "answer": 1, "hint": "Dokuzuncu adımı hatırla: PR bir branch'e bağlıdır.", "explain": "Aynı branch'e push ettiğin her commit PR'a eklenir. Panik yapmana gerek yok."}
+  ]
+}
