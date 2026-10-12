@@ -1,0 +1,21 @@
+{
+  "id": "07",
+  "blocks": [
+    {"type": "text", "body": "Yazma yetkin olmayan bir projeye katkı yapmak istiyorsun. Çözüm iki kavramdan geçer: **fork** ve **clone**. İkisi sık karıştırılır."},
+    {"type": "text", "body": "**Fork:** bir repoyu GitHub üzerinde **kendi hesabına** kopyalamaktır. Bu kopya senindir, istediğin gibi push edebilirsin.\n\n**Clone:** bir repoyu **kendi bilgisayarına** indirmektir. Git geçmişiyle birlikte gelir."},
+    {"type": "code", "lang": "text", "body": "Asıl repo       AU-YAZGIT/uni_101\n      │  fork  (GitHub'da kopyala)\n      ▼\nSenin kopyan    sen/uni_101\n      │  clone (bilgisayarına indir)\n      ▼\nYerel klasörün  uni_101/"},
+    {"type": "note", "kind": "ipucu", "body": "Kısa hafıza: **fork** GitHub'da olur, **clone** bilgisayarında."},
+    {"type": "gate"},
+    {"type": "choice", "question": "Fork işlemi nerede gerçekleşir?", "options": ["Bilgisayarında", "GitHub'da, kendi hesabında", "VS Code'un içinde"], "answer": 1, "hint": "Fork bir kopya oluşturur ama bu kopya internet üzerinde, senin hesabında durur.", "explain": "Fork'u GitHub sitesindeki Fork düğmesiyle yaparsın. Sonuç, hesabında yeni bir repodur."},
+    {"type": "choice", "question": "Clone ne yapar?", "options": ["Repoyu GitHub'da kopyalar", "Repoyu bilgisayarına indirir", "Repoyu siler"], "answer": 1, "hint": "İndirmek mi, GitHub'da kopyalamak mı?", "explain": "Clone, bir repoyu geçmişiyle birlikte bilgisayarına getirir."},
+    {"type": "gate"},
+    {"type": "text", "body": "Clone için repo adresini kullanırsın. Adresi GitHub'da yeşil **Code** düğmesinden kopyalarsın:"},
+    {"type": "code", "lang": "bash", "body": "git clone https://github.com/kullanici/uni_101.git"},
+    {"type": "note", "kind": "dikkat", "body": "Katkı yaparken **kendi fork'unu** clone'la, asıl repoyu değil. Asıl repoyu clone'larsan ve push etmeye çalışırsan bir önceki adımdaki 403 hatasını alırsın."},
+    {"type": "type", "question": "`AU-YAZGIT/uni_101` reposunu bilgisayarına indiren komutu yaz. (Adres https://github.com/... biçiminde olsun.)", "template": "$ ___", "answers": ["git clone https://github.com/AU-YAZGIT/uni_101.git"], "patterns": ["^git\\s+clone\\s+(https://github\\.com/|git@github\\.com:)[\\w.-]+/[\\w.-]+/?$"], "size": 44, "hint": "git clone ve sonra GitHub adresi. Adres https://github.com/sahip/repo-adı biçimindedir.", "explain": "Sonuna .git koymak zorunlu değil, ikisi de çalışır."},
+    {"type": "gate"},
+    {"type": "text", "body": "Şimdi tüm resme bakalım. Yetkin olmayan bir projeye katkı yapmanın yolu şu:"},
+    {"type": "order", "question": "Açık kaynak bir projeye katkı akışını sırala.", "prompt": "Adımları doğru sırayla seç:", "items": ["Projeyi fork et", "Kendi fork'unu clone'la", "Değişiklik yapıp commit at", "Fork'una push et", "Pull request aç"], "hint": "Önce kopyala, sonra indir, sonra çalış, sonra gönder, en sonda sahibine teklif et.", "explain": "Pull request, değişikliklerini asıl projenin sahibine \"şunu ekler misin?\" diye sunmaktır. Dokuzuncu adımda ayrıntısını göreceksin."},
+    {"type": "fill", "question": "Hangi kelime bir repoyu GitHub'da kendi hesabına kopyalamak demektir?", "template": "Repoyu kendi hesabıma ___ ettim.", "answers": ["fork"], "patterns": ["^fork(\\s*)$"], "size": 8, "hint": "Çatal anlamına gelen İngilizce kelime.", "explain": "Fork, GitHub'da kopyalar. Clone ise bilgisayarına indirir."}
+  ]
+}
