@@ -1,0 +1,24 @@
+{
+  "id": "05",
+  "blocks": [
+    {"type": "text", "body": "Git'in günlük hayatta en çok kullanacağın üç komutu var: **add**, **commit** ve **push**. İkinci adımda öğrendiğin üç alanla birebir eşleşiyorlar."},
+    {"type": "code", "lang": "text", "body": "Çalışma klasörü  --git add-->  Hazırlık alanı  --git commit-->  Depo  --git push-->  GitHub"},
+    {"type": "text", "body": "**`git add`**: değişikliği hazırlık alanına alır.\n\n**`git commit`**: hazırlık alanındakileri bir kayıt noktası olarak depoya yazar.\n\n**`git push`**: depodaki commit'leri GitHub'a gönderir."},
+    {"type": "gate"},
+    {"type": "text", "body": "`git add` ile tek bir dosyayı ya da bulunduğun klasördeki tüm değişiklikleri ekleyebilirsin:"},
+    {"type": "code", "lang": "bash", "body": "git add giris.html   # sadece bu dosya\ngit add .            # her şey (nokta: bu klasör)"},
+    {"type": "type", "question": "Bulunduğun klasördeki tüm değişiklikleri hazırlık alanına ekleyen komutu yaz.", "template": "$ ___", "answers": ["git add ."], "patterns": ["^git\\s+add\\s+(\\.|-a|--all)$"], "size": 14, "hint": "git add ve sonra \"bu klasör\" anlamına gelen tek karakter.", "explain": "git add . o klasördeki tüm değişiklikleri hazırlık alanına alır."},
+    {"type": "gate"},
+    {"type": "text", "body": "Şimdi kayıt noktasını oluştur. `-m` ile commit'e bir **mesaj** yazarsın. Mesaj, ne yaptığını gelecekteki sana (ve ekibine) anlatır:"},
+    {"type": "code", "lang": "bash", "body": "git commit -m \"Giriş sayfası eklendi\""},
+    {"type": "choice", "question": "Hangi commit mesajı daha iyidir?", "options": ["son", "düzeltme2", "Giriş formundaki e-posta hatası düzeltildi", "asdfgh"], "answer": 2, "hint": "Altı ay sonra log'a bakınca neyi anlarsın?", "explain": "İyi mesaj kısa ve net olur: ne değişti, bir bakışta anlaşılır."},
+    {"type": "type", "question": "\"İlk commit\" mesajıyla commit atan komutu yaz.", "template": "$ ___", "answers": ["git commit -m \"İlk commit\""], "patterns": ["^git\\s+commit\\s+-m\\s+\".+\"$"], "size": 30, "hint": "git commit -m ve sonra mesaj, tırnak içinde.", "explain": "Tırnak içindeki metin senin mesajın. Başka bir mesaj yazsaydın o da doğru olurdu."},
+    {"type": "gate"},
+    {"type": "text", "body": "Son adım: commit'leri GitHub'a gönder."},
+    {"type": "code", "lang": "bash", "body": "git push"},
+    {"type": "note", "kind": "ipucu", "body": "İlk push'ta GitHub giriş yapmanı isteyebilir. Tarayıcıdan ya da VS Code'un açtığı pencereden giriş yapman yeterli."},
+    {"type": "note", "kind": "dikkat", "body": "Her projeye push edemezsin. Yetkin olmayan bir repoya push denemek hata verir. Neden olduğunu bir sonraki bölümde göreceksin."},
+    {"type": "choice", "question": "Commit'lerini GitHub'a gönderen komut hangisi?", "options": ["git add", "git commit", "git push", "git status"], "answer": 2, "hint": "İngilizce \"itmek\" anlamına gelen kelime.", "explain": "push, yerel commit'lerini GitHub'daki depoya iter."},
+    {"type": "order", "question": "Bir değişikliği GitHub'a ulaştırmanın doğru sırası nedir?", "prompt": "Komutları doğru sırayla seç:", "items": ["git add .", "git commit -m \"Mesaj\"", "git push"], "hint": "Önce hazırla, sonra kaydet, en son gönder.", "explain": "add, commit, push. Bu döngüyü artık ezbere bileceksin."}
+  ]
+}
