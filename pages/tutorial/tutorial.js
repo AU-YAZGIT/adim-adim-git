@@ -7,6 +7,7 @@ import { progress } from "../../shared/progress.js";
 
 const BASE = "../../content/tr/levels/";
 const REPO_URL = "https://github.com/AU-YAZGIT/uni_101";
+const SIDEBAR_KEY = "adim-adim-git:kenar";
 const CHECKS = new Set(["choice", "fill", "type", "order"]);
 const $ = (s) => document.querySelector(s);
 const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -23,6 +24,20 @@ const cur = () => progress.read(total() + 1);
 
 /* Yönlendirme ---------------------------------------------------------- */
 async function init() {
+  // Sidebar'ı gizle/göster (masaüstü). Durum hatırlanır.
+  const setCollapsed = (on) => {
+    $(".layout").classList.toggle("is-collapsed", on);
+    $("#expand").hidden = !on;
+    $("#expand").setAttribute("aria-expanded", String(!on));
+    $("#collapse").setAttribute("aria-expanded", String(!on));
+    try { localStorage.setItem(SIDEBAR_KEY, on ? "1" : "0"); } catch {}
+  };
+  $("#collapse").onclick = () => { setCollapsed(true); $("#expand").focus(); };
+  $("#expand").onclick = () => { setCollapsed(false); $("#collapse").focus(); };
+  let saved = false;
+  try { saved = localStorage.getItem(SIDEBAR_KEY) === "1"; } catch {}
+  setCollapsed(saved);
+
   try { data = await (await fetch(BASE + "index.json")).json(); }
   catch { $("#content").innerHTML = '<p class="fallback">İçerik yüklenemedi. Sayfayı bir sunucu üzerinden aç (GitHub Pages ya da yerelde <code>python -m http.server</code>).</p>'; return; }
   addEventListener("hashchange", route);
@@ -93,7 +108,14 @@ async function showLevel(level) {
 
   // Kullanıcı bir şey açtığında sayfayı yeni içeriğe kaydırır.
   // Yeni içerik kısaysa sayfanın sonuna (düğmeye) iner, uzunsa başlangıcına gider.
-  function advance(user) {
+  // pressed: "Anladım, devam et" düğmesinden geldiyse düğme animasyonu oynar.
+  function advance(user, pressed) {
+    if (pressed) {
+      next.classList.remove("is-pressed");
+      void next.offsetWidth; // animasyonu yeniden başlat
+      next.classList.add("is-pressed");
+      setTimeout(() => next.classList.remove("is-pressed"), 650);
+    }
     const before = wrap.children.length;
     step();
     const first = wrap.children[before];
@@ -107,14 +129,18 @@ async function showLevel(level) {
   }
 
   function step() {
+    let k = 0; // kademeli giriş sayacı
     while (i < blocks.length) {
       const b = blocks[i++];
       if (b.type === "gate") {
         if (wasDone) continue;
-        return setNext("Anladım, devam et", () => advance(true));
+        return setNext("Anladım, devam et", () => advance(true, true));
       }
       const node = renderBlock(b, si, () => advance(true));
-      if (i > 1 || !wasDone) node.classList.add("reveal");
+      if (i > 1 || !wasDone) {
+        node.classList.add("reveal");
+        node.style.animationDelay = k++ * 90 + "ms";
+      }
       wrap.append(node);
       if (CHECKS.has(b.type) && !wasDone) return setNext("Önce soruyu yanıtla", null, true);
     }
@@ -170,12 +196,17 @@ function quiz(b, si, solved) {
     body.innerHTML = `<div class="quiz__line"><span>${esc(pre)}</span><input type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Cevabın" size="${b.size || 12}"><span>${esc(post)}</span></div>`;
     const inp = body.querySelector("input");
     inp.onkeydown = (e) => { if (e.key === "Enter") btn.click(); };
-    verify = () => (inp.value.trim() ? b.answers.some((a) => norm(a) === norm(inp.value)) : null);
+    // Cevap: tam eşleşme (answers) ya da regex (patterns). İkisi de normalize edilmiş girdiye uygulanır.
+    const res = (b.patterns || []).map((p) => new RegExp(p, "i"));
+    verify = () => {
+      const v = norm(inp.value);
+      return v ? (b.answers || []).some((a) => norm(a) === v) || res.some((r) => r.test(v)) : null;
+    };
     lock = () => (inp.disabled = true);
   } else if (b.type === "order") {
     const picked = [];
     const items = b.items.map((t, k) => [t, k]).sort(() => Math.random() - 0.5);
-    body.innerHTML = `<p>Komutları doğru sırayla seç:</p><div class="quiz__pool"></div><ol class="quiz__seq" aria-label="Seçtiğin sıra"></ol><button class="button button--secondary" type="button">Seçimi temizle</button>`;
+    body.innerHTML = `<p>${esc(b.prompt || "Komutları doğru sırayla seç:")}</p><div class="quiz__pool"></div><ol class="quiz__seq" aria-label="Seçtiğin sıra"></ol><button class="button button--secondary" type="button">Seçimi temizle</button>`;
     const pool = body.querySelector(".quiz__pool"), seq = body.querySelector(".quiz__seq");
     const draw = () => {
       pool.innerHTML = ""; seq.innerHTML = "";
