@@ -1,0 +1,18 @@
+{
+  "id": "06",
+  "blocks": [
+    {"type": "text", "body": "Önceki adımda `git push` ile commit'lerini GitHub'a gönderdin. Peki bunu **herhangi bir** projeye yapabilir misin? Mesela popüler bir açık kaynak projeye?"},
+    {"type": "text", "body": "Hayır. Öyle olsaydı herkes herkesin projesini bozabilirdi. GitHub'da bir repoya push edebilmek için o repoda **yazma yetkisine** sahip olman gerekir. Bu yetki repo sahibinde ve sahibin davet ettiği kişilerde (collaborator) vardır."},
+    {"type": "text", "body": "Yetkin olmayan bir repoya push denersen şuna benzer bir hata alırsın:"},
+    {"type": "code", "lang": "text", "body": "$ git push\nremote: Permission to AU-YAZGIT/uni_101.git denied to kullanici.\nfatal: unable to access 'https://github.com/AU-YAZGIT/uni_101.git/': The requested URL returned error: 403"},
+    {"type": "note", "kind": "ipucu", "body": "**403** \"yasak, izin yok\" demektir. Bu hatayı görürsen kodun bozuk değil, sadece o repoya yazma yetkin yok."},
+    {"type": "gate"},
+    {"type": "choice", "question": "Yazma yetkin olmayan bir repoya `git push` yaparsan ne olur?", "options": ["Değişikliklerin repoya eklenir", "403 hatası alırsın ve hiçbir şey değişmez", "Repo sahibine otomatik pull request gider"], "answer": 1, "hint": "Hata mesajındaki sayıyı hatırla.", "explain": "GitHub izni olmayan push'u reddeder. Değişikliklerin sadece kendi bilgisayarında kalır."},
+    {"type": "fill", "question": "Bir repoya push edebilmek için hangi yetki gerekir?", "template": "Push için repoda ___ yetkisi gerekir.", "answers": ["yazma", "write"], "patterns": ["^(yazma|write)( yetkisi| erişimi)?$"], "size": 10, "hint": "Okuma değil, tersi.", "explain": "Okuma yetkisi herkeste vardır (public repolarda), ama yazma yetkisi sadece sahibe ve davet edilenlere aittir."},
+    {"type": "gate"},
+    {"type": "text", "body": "Git, push ederken **nereye** göndereceğini nasıl biliyor? Her projede GitHub'daki depoya işaret eden bir adres (**remote**) kayıtlıdır. Varsayılan adı genellikle **origin**'dir."},
+    {"type": "code", "lang": "text", "body": "$ git remote -v\norigin  https://github.com/kullanici/projem.git (fetch)\norigin  https://github.com/kullanici/projem.git (push)"},
+    {"type": "type", "question": "Projenin bağlı olduğu uzak adresleri gösteren komutu yaz.", "template": "$ ___", "answers": ["git remote -v"], "patterns": ["^git\\s+remote\\s+(-v|--verbose)$"], "size": 16, "hint": "git remote ve ardından \"ayrıntılı\" anlamına gelen kısa bayrak.", "explain": "git remote -v, push'un tam olarak hangi adrese gideceğini gösterir. Hata aldığında ilk bakacağın yerlerden biri."},
+    {"type": "choice", "question": "Sence bu kural neden var?", "options": ["Herkes herkesin projesini bozamasın diye", "GitHub'u yavaşlatmamak için", "Git yalnızca tek kişiyle çalıştığı için"], "answer": 0, "hint": "Popüler bir projeyi herkes değiştirebilseydi ne olurdu?", "explain": "Kontrol sahipte kalır. Peki yine de katkı yapmak istiyorsan? Bir sonraki adımda fork'u öğreneceksin."}
+  ]
+}
