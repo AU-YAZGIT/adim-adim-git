@@ -1,0 +1,20 @@
+{
+  "id": "03",
+  "blocks": [
+    {"type": "text", "body": "Git bu kadar commit'i nerede saklıyor? Projenin içinde `.git` adında gizli bir klasörde."},
+    {"type": "text", "body": "Bir klasörde ilk kez Git'i başlattığında bu klasör oluşur. İçinde `.git` varsa o klasör bir **Git deposudur**, yoksa sıradan bir klasördür."},
+    {"type": "code", "lang": "text", "body": "$ ls -a\n.  ..  .git  index.html  README.md"},
+    {"type": "note", "kind": "ipucu", "body": "Adı nokta ile başlayan dosya ve klasörler çoğu sistemde varsayılan olarak gizlenir. Bu yüzden `.git`'i normalde görmezsin."},
+    {"type": "gate"},
+    {"type": "text", "body": "İçine bakarsan birkaç önemli parça görürsün:"},
+    {"type": "code", "lang": "text", "body": ".git/\n├── HEAD       # şu an hangi branch'tesin\n├── config     # bu depoya özel ayarlar\n├── objects/   # commit'lerin ve dosya içeriklerinin kendisi\n└── refs/      # branch ve etiket isimleri"},
+    {"type": "note", "kind": "dikkat", "body": "`.git` klasörünü silersen projenin tüm geçmişi gider. Dosyaların kalır ama commit'lerin kalmaz. İçindeki dosyaları da elle değiştirme."},
+    {"type": "choice", "question": "Bir arkadaşın projeyi sana zip olarak gönderirken yanlışlıkla `.git` klasörünü çıkardı. Ne olur?", "options": ["Dosyalar gelir ama geçmiş yoktur, klasör artık bir Git deposu değildir", "Dosyalar da silinir", "Hiçbir şey değişmez, geçmiş başka yerde saklanır"], "answer": 0, "hint": "Commit'ler nerede saklanıyordu?", "explain": "Geçmiş .git içinde yaşar. O olmadan elinde sadece dosyaların son hali olur."},
+    {"type": "gate"},
+    {"type": "text", "body": "Gizli dosyalar dahil klasörün içeriğini listelemek için:\n\n**Mac / Linux:** `ls -a`\n\n**Windows (PowerShell):** `ls -Force`\n\nVS Code'un sol panelinde `.git` zaten görünmez, merak etme."},
+    {"type": "type", "question": "Gizli dosyalar dahil klasör içeriğini listeleyen komutu yaz. (Kendi sistemine uygun olanı yazabilirsin.)", "template": "$ ___", "answers": ["ls -a", "ls -force"], "patterns": ["^ls\\s+-[a-z]*a[a-z]*$", "^dir\\s+/a(:h)?$"], "size": 14, "hint": "ls komutuna \"all\" yani hepsi anlamına gelen harfi ekle.", "explain": "ls -a gizli dosyaları da gösterir. Çıktıda .git'i görürsen o klasör bir Git deposudur."},
+    {"type": "text", "body": "Peki `.git` klasörünü kim oluşturuyor? Bir klasörü Git deposuna çeviren komut: **init** (başlat) kelimesinden gelir."},
+    {"type": "type", "question": "Bulunduğun klasörü yeni bir Git deposuna çeviren komutu yaz.", "template": "$ ___", "answers": ["git init"], "patterns": ["^git\\s+init$"], "size": 14, "hint": "git ve \"başlat\" anlamına gelen kısa İngilizce kelime.", "explain": "git init çalıştırınca klasörde gizli bir .git oluşur ve Git o projeyi izlemeye başlar."},
+    {"type": "fill", "question": "Git geçmişi hangi klasörde tutar?", "template": "Geçmiş ___ klasöründe saklanır.", "answers": [".git"], "patterns": ["^\\.?git$"], "size": 8, "hint": "Nokta ile başlayan, gizli klasör.", "explain": ".git silinirse geçmiş de gider."}
+  ]
+}
