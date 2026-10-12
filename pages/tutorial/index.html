@@ -18,12 +18,20 @@
     <span id="topbar-title">Adım Adım Git</span>
   </header>
 
+  <button class="button button--secondary sidebar-expand" id="expand" type="button"
+          aria-controls="sidebar" aria-expanded="false" hidden>☰ Adımlar</button>
+
   <div class="layout">
     <aside class="sidebar" id="sidebar" aria-label="Adımlar">
-      <a class="sidebar__brand" href="../hero/">
-        <img src="../../shared/assets/logos/community-logo.jpeg" alt="" width="36" height="36">
-        <span><strong>Adım Adım Git</strong><br><small>AÜ-YAZGIT</small></span>
-      </a>
+      <div class="sidebar__head">
+        <a class="sidebar__brand" href="../hero/">
+          <img src="../../shared/assets/logos/community-logo.jpeg" alt="" width="36" height="36">
+          <span><strong>Adım Adım Git</strong><br><small>AÜ-YAZGIT</small></span>
+        </a>
+        <button class="sidebar__collapse" id="collapse" type="button"
+                aria-controls="sidebar" aria-expanded="true"
+                aria-label="Kenar çubuğunu gizle" title="Gizle">«</button>
+      </div>
       <nav id="nav" aria-label="Seviye listesi"></nav>
       <button class="sidebar__reset" id="reset" type="button">Sıfırla</button>
     </aside>
