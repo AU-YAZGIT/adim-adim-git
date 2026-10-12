@@ -1,0 +1,20 @@
+{
+  "id": "08",
+  "blocks": [
+    {"type": "text", "body": "Fork ve clone'u biliyorsun. Şimdi asıl soru: **neye katkı yapacaksın?** Açık kaynak projeler yeni gelenler için bazı issue'ları özel olarak işaretler."},
+    {"type": "text", "body": "**Issue**, bir repoda açılan görev, hata bildirimi ya da fikirdir. Yeni başlayanlara uygun olanlar genellikle **good first issue** etiketini taşır. Bunlar küçük, anlaşılır ve ilk katkı için güvenli görevlerdir."},
+    {"type": "note", "kind": "ipucu", "body": "Bir reponun **Issues** sekmesine gir, **Labels** filtresinden `good first issue`'u seç. İstediğin projede etiket yoksa `help wanted` etiketine de bak."},
+    {"type": "gate"},
+    {"type": "text", "body": "GitHub'ın arama kutusunda da etiketle filtreleyebilirsin. Tüm açık issue'larda `good first issue` aramak için şunu yazarsın:"},
+    {"type": "code", "lang": "text", "body": "is:issue is:open label:\"good first issue\""},
+    {"type": "type", "question": "Sadece `good first issue` etiketli issue'ları getiren filtreyi yaz.", "template": "Arama kutusu: ___", "answers": ["label:\"good first issue\""], "patterns": ["(^|\\s)label:\"good first issue\"(\\s|$)"], "size": 30, "hint": "label: yaz, sonra tırnak içinde etiketin adını.", "explain": "label:\"good first issue\" filtresi tek başına da çalışır, başına is:issue is:open ekleyerek daraltabilirsin."},
+    {"type": "gate"},
+    {"type": "text", "body": "Her issue iyi bir seçim değildir. Başlamadan önce şunlara bak:\n\n**Proje aktif mi?** Son commit'ler yakın zamanda mı?\n\n**Issue boşta mı?** Kimseye atanmış mı, altında zaten bir pull request var mı?\n\n**Net mi?** Ne yapılacağı anlaşılıyor mu?"},
+    {"type": "choice", "question": "Hangi issue ilk katkın için en iyi seçim?", "options": ["2 yıl önce açılmış, hiç yorum almamış, repo 1 yıldır güncellenmemiş", "Birine atanmış ve altında açık bir pull request var", "Net tarif edilmiş küçük bir yazım hatası düzeltmesi, kimseye atanmamış"], "answer": 2, "hint": "Aktif, boşta ve net olanı ara.", "explain": "Küçük ve net bir iş hem hata riskini azaltır hem de akışı öğrenmeni sağlar."},
+    {"type": "text", "body": "Bir issue seçtiysen hemen kod yazmaya başlama. Önce altına kısa bir yorum bırak, böylece başkası aynı işe başlamasın ve bakımcılar haberdar olsun:"},
+    {"type": "code", "lang": "text", "body": "Merhaba, bu issue üzerinde çalışmak istiyorum. Başlayabilir miyim?"},
+    {"type": "note", "kind": "dikkat", "body": "Repoda **CONTRIBUTING.md** dosyası varsa mutlaka oku. Kuralları, kod stilini ve nasıl pull request açacağını orada yazar."},
+    {"type": "order", "question": "İlk katkın için issue seçerken izleyeceğin sırayı belirle.", "prompt": "Adımları doğru sırayla seç:", "items": ["Etiketle issue'ları filtrele", "Projenin aktif olduğuna bak", "CONTRIBUTING.md dosyasını oku", "Issue'ya \"üzerinde çalışabilir miyim?\" yorumu bırak"], "hint": "Önce bul, sonra projeyi kontrol et, kuralları oku, en sonda sahiplen.", "explain": "Bu sıra, boşa emek harcamanı ve projenin kurallarını çiğnemeni önler."},
+    {"type": "fill", "question": "Yeni başlayanlara uygun issue'larda hangi etiket bulunur?", "template": "Etiketin adı: good first ___", "answers": ["issue"], "patterns": ["^issue$"], "size": 8, "hint": "Etiketin tam adı: good first ... (görev, hata bildirimi).", "explain": "good first issue, açık kaynakta ilk katkı için en bilinen etikettir."}
+  ]
+}
